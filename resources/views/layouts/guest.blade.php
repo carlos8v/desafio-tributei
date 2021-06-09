@@ -15,6 +15,11 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <link rel="icon" type="image/png" sizes="192x192" href="https://tributei.net/front-end/favicon/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="https://tributei.net/front-end/favicon/android-chrome-512x512.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://tributei.net/front-end/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://tributei.net/front-end/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://tributei.net/front-end/favicon/favicon-16x16.png">
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

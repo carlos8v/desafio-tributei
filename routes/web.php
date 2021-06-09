@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NFesController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
+
+Route::get('/', fn() => view('auth.login'))->middleware(['guest']);
+
+Route::get('/dashboard', fn() => view('dashboard'))
+    ->middleware(['auth'])
+    ->name('dashboard');
+
+
+// NFes
+
+Route::get('/dashboard/nfes', [NFesController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('nfes');
+
+Route::get('/dashboard/nfes/new', [NFesController::class, 'new'])
+    ->middleware(['auth'])
+    ->name('nfes.new');
+
+Route::post('/dashboard/nfes/new', [NFesController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('nfes.store');
+
+Route::get('/dashboard/nfes/{id}', [NFesController::class, 'show'])
+    ->middleware(['auth'])
+    ->name('nfes.show');
+
+
+// Products
+
+Route::get('/dashboard/products', [ProductController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('products');
+
+Route::put('/dashboard/products', [ProductController::class, 'update'])
+    ->middleware(['auth'])
+    ->name('products.update');
