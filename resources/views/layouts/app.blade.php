@@ -11,10 +11,10 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
         <link rel="icon" type="image/png" sizes="192x192" href="https://tributei.net/front-end/favicon/android-chrome-192x192.png">
         <link rel="icon" type="image/png" sizes="512x512" href="https://tributei.net/front-end/favicon/android-chrome-512x512.png">
         <link rel="apple-touch-icon" sizes="180x180" href="https://tributei.net/front-end/favicon/apple-touch-icon.png">
