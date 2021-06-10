@@ -231,14 +231,17 @@ class NFesController extends Controller {
 
   public function handleCustomer($array, $nfe_id) {
     $name = $array['infNFe']['dest']['xNome'];
-    $cpf = $array['infNFe']['dest']['CPF'] ?? '';
-    $cnpj = $array['infNFe']['dest']['CNPJ'] ?? '';
+    $cpf = $array['infNFe']['dest']['CPF'] ?? null;
+    $cnpj = $array['infNFe']['dest']['CNPJ'] ?? null;
     $email = $array['infNFe']['dest']['email'] ?? '';
 
     $customer_id = DB::table('customers')
       ->select('id')
-      ->where('CPF', $cpf)
-      ->orWhere('CNPJ', $cnpj)
+      ->whereRaw(
+        '(CPF = ? and CNPJ is NULL) or
+        (CNPJ = ? and CPF is NULL)',
+        [$cpf, $cnpj]
+      )
       ->get()[0]->id ?? null;
 
     if (!$customer_id) {
@@ -252,8 +255,11 @@ class NFesController extends Controller {
 
       $customer_id = DB::table('customers')
         ->select('id')
-        ->where('CPF', $cpf)
-        ->orWhere('CNPJ', $cnpj)
+        ->whereRaw(
+          '(CPF = ? and CNPJ is NULL) or
+          (CNPJ = ? and CPF is NULL)',
+          [$cpf, $cnpj]
+        )
         ->get()[0]->id;
     }
 
